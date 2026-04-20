@@ -2,33 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday 🎉</title>
+<title>Birthday Surprise 🎂</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+<div class="gift-screen" id="giftScreen">
+    <div class="gift-box" onclick="openGift()">🎁</div>
+    <p>Click the gift</p>
+</div>
 
-<h1 id="title">Click the Button 🎁</h1>
+<div class="main" id="mainContent">
 
-<button onclick="startSurprise()">Open Birthday Surprise</button>
+<h1 id="title">🎉 Happy Birthday 🎉</h1>
 
-<div id="birthday" class="hidden">
+<div class="balloons">
+🎈 🎈 🎈 🎈 🎈
+</div>
 
-<h1 class="happy">🎉 Happy Birthday 🎉</h1>
+<p id="message"></p>
 
-<div class="cake">🎂</div>
-
-<p class="message">
-Wishing you lots of happiness, success and joy! 💖
-</p>
+<canvas id="fireworks"></canvas>
 
 </div>
 
-</div>
-
-<audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid"></audio>
+<audio id="music" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
 
 <script src="script.js"></script>
 
