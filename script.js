@@ -1,42 +1,76 @@
-function startSurprise(){
+let text = "Wishing you happiness, success and lots of cake today! 🎂";
 
-document.getElementById("birthday").style.display="block"
+let i = 0;
 
-document.getElementById("title").style.display="none"
+function openGift(){
 
-document.querySelector("button").style.display="none"
+document.getElementById("giftScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
 
-document.getElementById("music").play()
+typeText();
+startFireworks();
+}
 
-confetti()
+function typeText(){
+
+if(i < text.length){
+
+document.getElementById("message").innerHTML += text.charAt(i);
+i++;
+
+setTimeout(typeText,80);
 
 }
 
-function confetti(){
+}
 
-for(let i=0;i<80;i++){
+function startFireworks(){
 
-let conf=document.createElement("div")
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
 
-conf.style.position="fixed"
-conf.style.width="10px"
-conf.style.height="10px"
-conf.style.background="white"
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-conf.style.left=Math.random()*100+"vw"
-conf.style.top="-10px"
+let particles = [];
 
-document.body.appendChild(conf)
+for(let i=0;i<100;i++){
 
-let fall=Math.random()*3+2
+particles.push({
 
-conf.animate([
-{transform:"translateY(0)"},
-{transform:"translateY(100vh)"}
-],{
-duration:fall*1000,
-iterations:1
-})
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*5,
+speedY:Math.random()*3+1
+
+});
 
 }
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="yellow";
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+
+p.y+=p.speedY;
+
+if(p.y>canvas.height){
+p.y=0;
+}
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
 }
